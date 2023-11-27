@@ -2,18 +2,18 @@ import React from 'react'
 
 function Singnup (){
     return(
-        <div className='d-flex w-100 vh-100 bg-primary justify-content-center align-items-center'>
+        <div style={{ backgroundColor: 'maroon', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div className='bg-white p-3 rounded w-25'>
                 <h2>Registrarse</h2> 
-                <form>
-                    <div className='mb-3'>
+                <form >
+                    <div className='mb-3' >
                         <label htmlFor='name'><strong>Nombre y Apellido</strong></label>
-                        <input type="text" placeholder='Enter Name' name='name'  className='form-control rounded-0'></input>
+                        <input type="text" placeholder='Ingrese el nombre y apellido' name='name'  className='form-control rounded-0' ></input>
 
                     </div>
                     <div className='mb-3'>
                     <label htmlFor='correo'><strong>Correo</strong></label>
-                        <input type="text" placeholder='Enter Correo' name='correo'  className='form-control rounded-0'></input>
+                        <input type="text" placeholder='Ingrese Correo' name='correo'  className='form-control rounded-0'></input>
 
                     </div>
                     <div className='mb-3'>
@@ -22,7 +22,10 @@ function Singnup (){
 
 
                     </div>
-                    <button type='submit' className='btn btn-success w-100 rounded-0'> Sign up</button>
+                    <button type='submit' className='btn btn-danger w-100 rounded-0'> Sign up</button>
+                    <div style={{ margin: '10px 0' }}></div>
+
+                    <button type='submit' className='btn btn-default border w-100 rounded-0' style={{ backgroundColor: 'lightcoral', color: 'white' }}>Login</button>
 
 
 
