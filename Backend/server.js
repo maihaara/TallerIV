@@ -1,6 +1,6 @@
 const express = require('express');
 const { Pool } = require('pg');
-
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 
 const app = express();
@@ -21,13 +21,16 @@ app.use(express.urlencoded({ extended: true }));
 
 // Ruta para el registro de usuarios (ejemplo básico)
 app.post('/signup', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
-    // Ejemplo de inserción de datos en la base de datos
+    // Hasheamos la contraseña antes de almacenarla
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Ajustamos la inserción de datos en la base de datos para usar la contraseña hasheada
     const result = await pool.query(
-      'INSERT INTO Usuario (Nombre, CorreoElectronico, Contraseña) VALUES ($1, $2, $3) RETURNING *',
-      [name, email, password]
+      'INSERT INTO Usuario (Nombre, CorreoElectronico, Contraseña, role_id) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, email, hashedPassword, role]
     );
 
     res.json({ success: true, message: 'Usuario registrado exitosamente', user: result.rows[0] });

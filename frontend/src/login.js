@@ -1,3 +1,4 @@
+// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -14,12 +15,13 @@ function Login() {
         password,
       });
 
+      console.log(response.data);
+
       if (response.data.success) {
-        // Inicio de sesión exitoso, mostrar alerta
-        alert('Inicio de sesión exitoso');
+        const { role } = response.data.user;
+        alert(`Inicio de sesión exitoso como ${role}`);
       } else {
-        // Credenciales inválidas, mostrar alerta con el mensaje de error
-        alert(`Error: ${response.data.message}`);
+        console.log('Credenciales inválidas');
       }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
@@ -53,6 +55,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
           <button type='submit' className='btn btn-success w-100 rounded-0'> Sign in</button>
         </form>
       </div>
