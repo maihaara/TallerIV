@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +23,11 @@ function Signup() {
       console.log(response.data);
 
       if (response.data.success) {
-        const { role } = response.data.user;
-        alert(`Registro exitoso como ${role}`);
+        const user = response.data.user; // Modificamos esta línea
+        const userRole = user.role; // Añadimos esta línea para obtener el rol
+
+        alert(`Registro exitoso como ${userRole}`);
+        navigate(`/welcome/${userRole}`);
       } else {
         console.log('Error en el registro');
       }
@@ -57,14 +62,13 @@ function Signup() {
               onChange={(e) => setRole(e.target.value)}
             >
               <option value=''>Selecciona un rol</option>
-              <option value='1'>Admin</option>
-              <option value='2'>Usuario</option>
-              {/* Agrega más opciones según tus roles */}
+              <option value='1'>Profesor</option>
+              <option value='2'>Director</option>
+              <option value='3'>EXP</option>
             </select>
           </div>
-          <button type='submit' className='btn btn-danger w-100 rounded-0'>Signup</button>
+          <button type='submit' className='btn btn-danger w-100 rounded-0'>Registrarse</button>
           <div style={{ margin: '10px 0' }}></div>
-          <button type='submit' className='btn btn-default border w-100 rounded-0' style={{ backgroundColor: 'lightcoral', color: 'white' }}>Login</button>
         </form>
       </div>
     </div>
@@ -72,3 +76,4 @@ function Signup() {
 }
 
 export default Signup;
+

@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -29,7 +28,7 @@ function Login() {
   };
 
   return (
-    <div className='d-flex w-100 vh-100 bg-primary justify-content-center align-items-center'>
+    <div style={{ backgroundColor: 'maroon', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div className='bg-white p-3 rounded w-25'>
         <h2>Iniciar sesión</h2>
         <form onSubmit={handleSubmit}>
@@ -56,7 +55,8 @@ function Login() {
             />
           </div>
 
-          <button type='submit' className='btn btn-success w-100 rounded-0'> Sign in</button>
+          <button type='submit' className='btn btn-danger w-100 rounded-0'>Iniciar Sesion</button>
+          <div style={{ margin: '10px 0' }}></div>
         </form>
       </div>
     </div>
