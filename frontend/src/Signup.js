@@ -23,8 +23,8 @@ function Signup() {
       console.log(response.data);
 
       if (response.data.success) {
-        const user = response.data.user; // Modificamos esta línea
-        const userRole = user.role; // Añadimos esta línea para obtener el rol
+        const user = response.data.user; 
+        const userRole = user.role; 
 
         alert(`Registro exitoso como ${userRole}`);
         navigate(`/welcome/${userRole}`);
