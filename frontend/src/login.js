@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,11 +16,9 @@ function Login() {
         password,
       });
 
-      console.log(response.data);
-
       if (response.data.success) {
-        const { role } = response.data.user;
-        alert(`Inicio de sesión exitoso como ${role}`);
+        alert('Inicio de sesión exitoso');
+        navigate('/welcome'); // Puedes redirigir a la página que desees después del inicio de sesión
       } else {
         console.log('Credenciales inválidas');
       }
@@ -54,8 +54,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
-          <button type='submit' className='btn btn-danger w-100 rounded-0'>Iniciar Sesion</button>
+          <button type='submit' className='btn btn-danger w-100 rounded-0'>Iniciar Sesión</button>
           <div style={{ margin: '10px 0' }}></div>
         </form>
       </div>

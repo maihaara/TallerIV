@@ -11,7 +11,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'taller',
-  password: '1107',
+  password: 'postgres',
   port: 5432,
 });
 
@@ -46,10 +46,19 @@ app.post('/login', async (req, res) => {
 
   try {
     // Verificar las credenciales en la base de datos
-    const user = await pool.query('SELECT * FROM Usuario WHERE CorreoElectronico = $1 AND Contraseña = $2', [email, password]);
+    const user = await pool.query('SELECT * FROM Usuario WHERE CorreoElectronico = $1', [email]);
 
     if (user.rows.length > 0) {
-      res.json({ success: true, message: 'Inicio de sesión exitoso' });
+      const hashedPassword = user.rows[0].contraseña;  // Obtener el hash almacenado
+
+      // Aquí deberías comparar las contraseñas
+      const passwordMatch = await bcrypt.compare(password, hashedPassword);
+
+      if (passwordMatch) {
+        res.json({ success: true, message: 'Inicio de sesión exitoso' });
+      } else {
+        res.json({ success: false, message: 'Credenciales inválidas' });
+      }
     } else {
       res.json({ success: false, message: 'Credenciales inválidas' });
     }
@@ -58,6 +67,7 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });
+
 
 
 app.listen(port, () => {

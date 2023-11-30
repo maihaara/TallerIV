@@ -20,14 +20,9 @@ function Signup() {
         role,
       });
 
-      console.log(response.data);
-
       if (response.data.success) {
-        const user = response.data.user; 
-        const userRole = user.role; 
-
-        alert(`Registro exitoso como ${userRole}`);
-        navigate(`/welcome/${userRole}`);
+        alert('Registro exitoso');
+        navigate('/login');
       } else {
         console.log('Error en el registro');
       }
@@ -76,4 +71,3 @@ function Signup() {
 }
 
 export default Signup;
-
