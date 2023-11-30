@@ -18,7 +18,7 @@ function Login() {
 
       if (response.data.success) {
         alert('Inicio de sesión exitoso');
-        navigate('/welcome'); // Puedes redirigir a la página que desees después del inicio de sesión
+        navigate('/welcome');
       } else {
         console.log('Credenciales inválidas');
       }

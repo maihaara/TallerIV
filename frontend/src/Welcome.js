@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 
+
 function Welcome() {
   const { role } = useParams();
 
@@ -12,10 +13,13 @@ function Welcome() {
         <Link to="/pantalla">
         <button style={{backgroundColor: 'maroon',padding: '10px',borderRadius: '5px',border: 'none',color: 'white',cursor: 'pointer',display: 'block',  margin: '0 auto',  }}> Inicio</button>
         </Link>
+        <Link to="/infousuario">
+        <button style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}> Usuario </button>
+        </Link>
+       
       </div>
     </div>
   );
 }
 
 export default Welcome;
-

@@ -7,6 +7,7 @@ import Login from './login';
 import Welcome from './Welcome';
 import './App.css';
 import Pantalla from './pantalla';
+import Infousuario from './Infousuario';
 
 function App() {
   return (
@@ -16,11 +17,13 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/welcome/:role" element={<Welcome />} />
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/pantalla" element={<Pantalla />} />
+          <Route path="/infousuario/:role" element={<Infousuario />} />
         </Routes>
       </div>
     </Router>
   );
 }
+
 export default App;

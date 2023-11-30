@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function Signup() {
 
       if (response.data.success) {
         alert('Registro exitoso');
-        navigate('/login');
+        navigate('/Welcome');
       } else {
         console.log('Error en el registro');
       }
