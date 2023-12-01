@@ -47,6 +47,7 @@
    Esto iniciará la aplicación y abrirá una nueva ventana del navegador.
 
 
+s
 
 # Getting Started with Create React App
 
