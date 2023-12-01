@@ -18,7 +18,7 @@ function Login() {
 
       if (response.data.success) {
         alert('Inicio de sesión exitoso');
-        navigate('/welcome');
+        navigate('/welcome', { state: { user: response.data.user } });
       } else {
         console.log('Credenciales inválidas');
       }
