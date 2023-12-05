@@ -17,7 +17,7 @@ function Welcome() {
           <p>Usuario no encontrado</p>
         )}
         <Link to="/pantalla">
-          <button style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto', }}> Inicio</button>
+          <button style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto', }}> Agregar alumnos</button>
         </Link>
         <Link to="/infousuario" state={{ user }}>
           <button style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}> Usuario </button>

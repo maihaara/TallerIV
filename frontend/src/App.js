@@ -8,6 +8,7 @@ import Welcome from './Welcome';
 import './App.css';
 import Pantalla from './pantalla';
 import Infousuario from './Infousuario';
+import Listaalumnos from './listaalumnos';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/pantalla" element={<Pantalla />} />
           <Route path="/infousuario/:role" element={<Infousuario />} />
+          <Route path="/Listaalumnos" element={<Listaalumnos />} />
         </Routes>
       </div>
     </Router>
