@@ -1,9 +1,9 @@
+// Signup.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-function Signup() {
+function Signup({ onSignup }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,25 +11,26 @@ function Signup() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:8081/signup', {
-        name,
-        email,
-        password,
-        role,
-      });
+  try {
+    const response = await axios.post('http://localhost:8081/signup', {
+      name,
+      email,
+      password,
+      role,
+    });
 
-      if (response.data.success) {
-        alert('Registro exitoso');
-        navigate('/Welcome');
-      } else {
-        console.log('Error en el registro');
-      }
-    } catch (error) {
-      console.error('Error al enviar los datos:', error);
+    if (response.data.success) {
+      onSignup(response.data.user);
+      alert('Registro exitoso');
+      navigate('/Welcome', { state: { user: response.data.user } }); // Redireccionar a la pantalla de bienvenida
+    } else {
+      console.log('Error en el registro');
     }
+  } catch (error) {
+    console.error('Error al enviar los datos:', error);
+  }
   };
 
   return (

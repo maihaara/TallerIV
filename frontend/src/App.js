@@ -1,27 +1,33 @@
 // App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Navegacion from './navegacion';
 import Signup from './Signup';
-import Login from './login'; 
+import Login from './Login';
 import Welcome from './Welcome';
-import './App.css';
-import Pantalla from './pantalla';
-import Infousuario from './Infousuario';
-import Listaalumnos from './listaalumnos';
-
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const handleLogin = (user) => {
+    setLoggedInUser(user);
+  };
+
+  const handleLogout = () => {
+    // Agrega cualquier lógica adicional necesaria al cerrar sesión
+    // ...
+
+    // Limpia el usuario actual al cerrar sesión
+    setLoggedInUser(null);
+  };
+
   return (
     <Router>
       <div>
-        <Navegacion />
+        <Navegacion loggedInUser={loggedInUser} onLogout={handleLogout} />
         <Routes>
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/welcome" element={<Welcome />} />
-          <Route path="/pantalla" element={<Pantalla />} />
-          <Route path="/infousuario/:role" element={<Infousuario />} />
-          <Route path="/Listaalumnos" element={<Listaalumnos />} />
         </Routes>
       </div>
     </Router>

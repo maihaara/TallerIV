@@ -1,5 +1,5 @@
-import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
+
 
 function Welcome() {
   const location = useLocation();
@@ -12,6 +12,7 @@ function Welcome() {
         {user ? (
           <>
             <p>{`Has iniciado sesión como ${user.name}`}</p>
+            <p>{`Rol: ${user.role_name}`}</p> {/* Utiliza user.role_name para mostrar el nombre del rol */}
           </>
         ) : (
           <p>Usuario no encontrado</p>

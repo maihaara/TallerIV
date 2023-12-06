@@ -1,8 +1,9 @@
+// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function Login() {
       });
 
       if (response.data.success) {
-        alert('Inicio de sesión exitoso');
+        onLogin(response.data.user); // Llamada a la función onLogin para establecer el usuario
         navigate('/welcome', { state: { user: response.data.user } });
       } else {
         console.log('Credenciales inválidas');

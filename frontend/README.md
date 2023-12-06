@@ -1,54 +1,3 @@
-# Instrucciones para ejecutar el proyecto
-
-## Backend
-
-1. Abre una terminal (bash).
-2. Navega al directorio del backend:
-
-    ```bash
-    cd backend
-    ```
-
-3. Instala las dependencias:
-
-    ```bash
-    npm install
-    ```
-
-4. Inicia el servidor backend:
-
-    ```bash
-    node server.js
-    ```
-
-   Asegúrate de que el puerto especificado en `server.js` no esté en uso y cámbialo si es necesario.
-
-## Frontend
-
-1. Abre otra terminal (bash).
-2. Navega al directorio del frontend:
-
-    ```bash
-    cd frontend
-    ```
-
-3. Instala las dependencias:
-
-    ```bash
-    npm install
-    ```
-
-4. Inicia la aplicación frontend:
-
-    ```bash
-    npm start
-    ```
-
-   Esto iniciará la aplicación y abrirá una nueva ventana del navegador.
-
-
-s
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -119,5 +68,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
