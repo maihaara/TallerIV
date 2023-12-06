@@ -39,11 +39,11 @@ function Signup({ onSignup }) {
         <h2 style={{ color: 'white', fontSize: '2em' }}>Registrarse</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-5'>
-          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Nombre y Apellido: </strong></label>
+          <label htmlFor='name' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Nombre y Apellido: </strong></label>
             <input type="text" placeholder='Ingrese el nombre y apellido' name='name' className='form-control rounded-0' onChange={(e) => setName(e.target.value)} style={{ fontSize: '1.3em', padding: '5px' }} />
           </div>
           <div className='mb-3'>
-          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Correo: </strong></label>
+          <label htmlFor='correo' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Correo: </strong></label>
             <input type="text" placeholder='Ingrese Correo' name='correo' className='form-control rounded-0' onChange={(e) => setEmail(e.target.value)} style={{ fontSize: '1.3em', padding: '5px' }}/>
           </div>
           <div className='mb-3'>
@@ -51,9 +51,10 @@ function Signup({ onSignup }) {
             <input type="password" placeholder='Ingrese la contraseña' name='Enter password' className='form-control rounded-0' onChange={(e) => setPassword(e.target.value)} style={{ fontSize: '1.3em', padding: '5px' }}/>
           </div>
           <div className='mb-3'>
-          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Rol: </strong></label>
+          <label htmlFor='role' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Rol: </strong></label>
             <select
               name='role'
+              
               className='form-control rounded-0'
               value={role}
               onChange={(e) => setRole(e.target.value)}
