@@ -24,7 +24,7 @@ function Signup({ onSignup }) {
     if (response.data.success) {
       onSignup(response.data.user);
       alert('Registro exitoso');
-      navigate('/Welcome', { state: { user: response.data.user } }); // Redireccionar a la pantalla de bienvenida
+      navigate('/welcome', { state: { user: response.data.user } }); // Redireccionar a la pantalla de bienvenida
     } else {
       console.log('Error en el registro');
     }
@@ -33,30 +33,31 @@ function Signup({ onSignup }) {
   }
   };
 
-  return (
-    <div style={{ backgroundColor: 'maroon', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div className='bg-white p-3 rounded w-25'>
-        <h2>Registrarse</h2>
+   return (
+    <div style={{ backgroundColor: 'maroon', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , fontFamily: 'Georgia, serif' }}>
+      <div className='bg-white p-9 rounded w-25'>
+        <h2 style={{ color: 'white', fontSize: '2em' }}>Registrarse</h2>
         <form onSubmit={handleSubmit}>
-          <div className='mb-3'>
-            <label htmlFor='name'><strong>Nombre y Apellido</strong></label>
-            <input type="text" placeholder='Ingrese el nombre y apellido' name='name' className='form-control rounded-0' onChange={(e) => setName(e.target.value)} />
+          <div className='mb-5'>
+          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Nombre y Apellido: </strong></label>
+            <input type="text" placeholder='Ingrese el nombre y apellido' name='name' className='form-control rounded-0' onChange={(e) => setName(e.target.value)} style={{ fontSize: '1.3em', padding: '5px' }} />
           </div>
           <div className='mb-3'>
-            <label htmlFor='correo'><strong>Correo</strong></label>
-            <input type="text" placeholder='Ingrese Correo' name='correo' className='form-control rounded-0' onChange={(e) => setEmail(e.target.value)} />
+          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Correo: </strong></label>
+            <input type="text" placeholder='Ingrese Correo' name='correo' className='form-control rounded-0' onChange={(e) => setEmail(e.target.value)} style={{ fontSize: '1.3em', padding: '5px' }}/>
           </div>
           <div className='mb-3'>
-            <label htmlFor='password'><strong>Clave</strong></label>
-            <input type="password" placeholder='Ingrese la contraseña' name='Enter password' className='form-control rounded-0' onChange={(e) => setPassword(e.target.value)} />
+          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Clave: </strong></label>
+            <input type="password" placeholder='Ingrese la contraseña' name='Enter password' className='form-control rounded-0' onChange={(e) => setPassword(e.target.value)} style={{ fontSize: '1.3em', padding: '5px' }}/>
           </div>
           <div className='mb-3'>
-            <label htmlFor='role'><strong>Rol</strong></label>
+          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Rol: </strong></label>
             <select
               name='role'
               className='form-control rounded-0'
               value={role}
               onChange={(e) => setRole(e.target.value)}
+              style={{ fontSize: '1.3em', padding: '5px' }}
             >
               <option value=''>Selecciona un rol</option>
               <option value='1'>Profesor</option>
@@ -64,7 +65,8 @@ function Signup({ onSignup }) {
               <option value='3'>EXP</option>
             </select>
           </div>
-          <button type='submit' className='btn btn-danger w-100 rounded-0'>Registrarse</button>
+          
+          <button style={{ backgroundColor: 'white', padding: '15px', borderRadius: '5px', border: 'none', color: '#8f1117', width: '100%', marginTop: '5px', cursor: 'pointer', fontSize: '1.0rem' ,justifyContent: 'center'}}>Registrarse</button>
           <div style={{ margin: '10px 0' }}></div>
         </form>
       </div>

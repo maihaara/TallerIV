@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Navegacion from './navegacion';
 import Signup from './Signup';
-import Login from './Login';
+import Login from './login';
 import Welcome from './Welcome';
+import Listaalumnos from './listaalumnos';
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
@@ -27,7 +28,8 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/Welcome" element={<Welcome />} />
+          <Route path="/listaalumnos" element={<Listaalumnos />} />
         </Routes>
       </div>
     </Router>

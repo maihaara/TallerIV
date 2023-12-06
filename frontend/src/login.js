@@ -27,14 +27,13 @@ function Login({ onLogin }) {
       console.error('Error al iniciar sesión:', error);
     }
   };
-
   return (
-    <div style={{ backgroundColor: 'maroon', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div className='bg-white p-3 rounded w-25'>
-        <h2>Iniciar sesión</h2>
+    <div style={{ backgroundColor: 'maroon', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , fontFamily: 'Georgia, serif' }}>
+      <div className='bg-white p-9 rounded w-25'>
+        <h2 style={{ color: 'white', fontSize: '2em' }}>Iniciar sesión</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-3'>
-            <label htmlFor='correo'><strong>Correo</strong></label>
+          <label htmlFor='correo' style={{ color: 'white', fontSize: '1.9em' , alingItems: 'center'}}><strong>Correo: </strong></label>
             <input
               type='text'
               placeholder='Enter Correo'
@@ -42,10 +41,11 @@ function Login({ onLogin }) {
               className='form-control rounded-0'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              style={{ fontSize: '1.3em', padding: '5px' }}
             />
           </div>
           <div className='mb-3'>
-            <label htmlFor='password'><strong>Contraseña</strong></label>
+          <label htmlFor='password' style={{ color: 'white', fontSize: '1.9em',  justifyContent: 'center' }}><strong>Contraseña: </strong></label>
             <input
               type='password'
               placeholder='Ingrese la contraseña'
@@ -53,14 +53,14 @@ function Login({ onLogin }) {
               className='form-control rounded-0'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{ fontSize: '1.3em', padding: '5px' }}
             />
           </div>
-          <button type='submit' className='btn btn-danger w-100 rounded-0'>Iniciar Sesión</button>
+          <button style={{ backgroundColor: 'white', padding: '15px', borderRadius: '5px', border: 'none', color: '#8f1117', width: '100%', marginTop: '5px', cursor: 'pointer', fontSize: '1.0rem' ,justifyContent: 'center'}}>Iniciar Sesión</button>
           <div style={{ margin: '10px 0' }}></div>
         </form>
       </div>
     </div>
   );
 }
-
 export default Login;
