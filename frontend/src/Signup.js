@@ -24,7 +24,7 @@ function Signup({ onSignup }) {
     if (response.data.success) {
       onSignup(response.data.user);
       alert('Registro exitoso');
-      navigate('/welcome', { state: { user: response.data.user } }); // Redireccionar a la pantalla de bienvenida
+      navigate('/Welcome', { state: { user: response.data.user } }); // Redireccionar a la pantalla de bienvenida
     } else {
       console.log('Error en el registro');
     }

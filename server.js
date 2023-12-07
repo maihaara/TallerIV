@@ -13,7 +13,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'taller',
-  password: '1107',
+  password: 'postgres',
   port: 5432,
 });
 
@@ -86,6 +86,43 @@ app.post('/logout', (req, res) => {
   res.json({ success: true, message: 'Sesión cerrada exitosamente' });
 });
 
+
+// Ruta para cargar un alumno
+app.post('/alumnos', async (req, res) => {
+  const { nombre, apellido, edad, generoId, cursoId, seccionId } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [nombre, apellido, edad, generoId, cursoId, seccionId]
+    );
+
+    res.json({ success: true, message: 'Alumno cargado exitosamente', alumno: result.rows[0] });
+  } catch (error) {
+    console.error('Error en la consulta SQL:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+app.get('/generos', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM genero');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al obtener la lista de géneros:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+app.get('/secciones', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM seccion');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al obtener la lista de secciones:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor backend corriendo en http://localhost:${port}`);

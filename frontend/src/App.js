@@ -6,6 +6,7 @@ import Signup from './Signup';
 import Login from './login';
 import Welcome from './Welcome';
 import Listaalumnos from './listaalumnos';
+import CargarAlumno from './CargarAlumno';
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/Welcome" element={<Welcome />} />
           <Route path="/listaalumnos" element={<Listaalumnos />} />
+          <Route path="/cargar-alumno" element={<CargarAlumno />} />
         </Routes>
       </div>
     </Router>

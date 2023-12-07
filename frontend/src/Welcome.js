@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 
@@ -17,7 +18,7 @@ function Welcome() {
         ) : (
           <p>Usuario no encontrado</p>
         )}
-        <Link to="/listaalumnos">
+        <Link to="/cargar-alumno">
           <button style={{ backgroundColor: 'maroon', padding: '15px', borderRadius: '9px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto', }}> Agregar alumnos</button>
         </Link>
         <Link to="/infousuario" state={{ user }}> 
