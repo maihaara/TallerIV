@@ -36,8 +36,8 @@ const ListaAlumnos = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Lista de Alumnos</h2>
+<div style={{ backgroundColor: 'white', height: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'Georgia, serif' }}>
+  <h2 style={{ fontSize: '3em', margin: '0' }}>Lista de Alumnos</h2>
       <table>
         <thead>
           <tr>
@@ -62,7 +62,7 @@ const ListaAlumnos = () => {
               <td>{alumno.seccion}</td>
               <td>
                 <Link to={`/editar-alumno/${alumno.alumno_id}`}>
-                  <button>Editar</button>
+                <button style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem' }}>Editar</button>
                 </Link>
               </td>
             </tr>

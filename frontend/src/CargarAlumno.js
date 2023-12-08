@@ -61,10 +61,10 @@ useEffect(() => {
   };
 
   return (
-    <div>
+    <div style={{fontFamily: 'Georgia, serif' }}>
       <h2>Cargar Alumno</h2>
-      <form>
-        <div>
+      <form style={{ backgroundColor: 'white', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , fontFamily: 'Georgia, serif', fontSize: '1.5rem', fontWeight: 'bold'}}>
+      <div>
           <label htmlFor='nombre'>Nombre:</label>
           <input type='text' name='nombre' onChange={(e) => setNombre(e.target.value)} />
         </div>
@@ -109,12 +109,13 @@ useEffect(() => {
             ))}
           </select>
         </div>
-        <button type='button' onClick={handleCargarAlumno}>
-          Cargar Alumno
-        </button>
+       
       </form>
-      <p>{mensaje}</p>
-      <Link to="/listaalumnos">Lista de Alumnos</Link>
+      <button type='button' onClick={handleCargarAlumno} style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto'  }}> Agregar alumno</button>
+      <p>{mensaje} </p>
+      <Link to="/listaalumnos" style={{ textDecoration: 'none' }}>
+        <button type='button' style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto'}}> Ver Lista de Alumnos</button>
+      </Link>
     </div>
   );
 }

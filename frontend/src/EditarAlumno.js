@@ -47,15 +47,17 @@ const EditarAlumno = () => {
   };
 
   return (
-    <div>
-      <h2>Editar Alumno</h2>
-      <form>
+    <div style={{fontFamily: 'Georgia, serif' }}>
+    <h2>Editar Alumno</h2>
+   
+    <form style={{ backgroundColor: 'white', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , fontFamily: 'Georgia, serif', fontSize: '0.8rem', fontWeight: 'bold'}}>
+      
         {/* Campos de entrada para editar los datos del alumno */}
         <label>Nombre:</label>
         <input type="text" name="nombre" value={alumno.nombre} onChange={handleInputChange} />
 
         <label>Apellido:</label>
-        <input type="text" name="apellido" value={alumno.apellido} onChange={handleInputChange} />
+        <input type="text" name="apellido" value={alumno.apellido} onChange={handleInputChange}  />
 
         <label>Edad:</label>
         <input type="number" name="edad" value={alumno.edad} onChange={handleInputChange} />
@@ -69,10 +71,10 @@ const EditarAlumno = () => {
         <label>Sección:</label>
         <input type="number" name="seccionId" value={alumno.seccionId} onChange={handleInputChange} />
 
-        <button type="button" onClick={handleGuardar}>
-          Guardar
-        </button>
+
       </form>
+      <button type="button" onClick={handleGuardar} style={{ backgroundColor: 'maroon', padding: '15px', borderRadius: '10px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto'  }}> Editar alumno</button>
+
     </div>
   );
 };
