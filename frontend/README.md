@@ -1,3 +1,34 @@
+# Instrucciones para ejecutar el proyecto
+
+
+
+    ```
+1. Instala las dependencias:
+    ```bash
+    npm install
+    ```
+2. Inicia la base de datos:
+    ```bash
+    node server.js
+    ```
+   Asegúrate de que el puerto especificado en `server.js` no esté en uso y cámbialo si es necesario.
+## Frontend
+1. Abre otra terminal (bash).
+2. Navega al directorio del frontend:
+    ```bash
+    cd frontend
+    ```
+3. Instala las dependencias:
+    ```bash
+    npm install
+    ```
+4. Inicia la aplicación frontend:
+    ```bash
+    npm start
+    ```
+   Esto iniciará la aplicación y abrirá una nueva ventana del navegador.
+5. Ten en cuenta de cambiar la contraseña de tu base de datos postgres en la linea 16 de server.js para que corra la base de datos dado por el dump
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
