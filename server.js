@@ -88,18 +88,12 @@ app.post('/logout', (req, res) => {
 
 
 // Ruta para cargar un alumno
-app.post('/alumnos', async (req, res) => {
-  const { nombre, apellido, edad, generoId, cursoId, seccionId } = req.body;
-
+app.get('/alumnos', async (req, res) => {
   try {
-    const result = await pool.query(
-      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [nombre, apellido, edad, generoId, cursoId, seccionId]
-    );
-
-    res.json({ success: true, message: 'Alumno cargado exitosamente', alumno: result.rows[0] });
+    const result = await pool.query('SELECT * FROM alumno');
+    res.json(result.rows);
   } catch (error) {
-    console.error('Error en la consulta SQL:', error);
+    console.error('Error al obtener la lista de alumnos:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });
@@ -114,12 +108,65 @@ app.get('/generos', async (req, res) => {
   }
 });
 
+
+app.get('/generos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM genero WHERE id = $1', [id]);
+
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ success: false, message: 'Género no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener el género:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+
 app.get('/secciones', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM seccion');
     res.json(result.rows);
   } catch (error) {
     console.error('Error al obtener la lista de secciones:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+app.get('/cursos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM curso WHERE curso_id = $1', [id]);
+
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ success: false, message: 'Curso no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener el curso:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+app.get('/secciones/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM seccion WHERE id = $1', [id]);
+
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ success: false, message: 'secciones no encontradas' });
+    }
+  } catch (error) {
+    console.error('Error al obtener las secciones:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });

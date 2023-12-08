@@ -1,5 +1,6 @@
 // CargarAlumno.js
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function CargarAlumno() {
@@ -113,6 +114,7 @@ useEffect(() => {
         </button>
       </form>
       <p>{mensaje}</p>
+      <Link to="/listaalumnos">Lista de Alumnos</Link>
     </div>
   );
 }

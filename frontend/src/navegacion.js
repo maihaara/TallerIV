@@ -18,6 +18,12 @@ function Navegacion({ loggedInUser, onLogout }) {
         {loggedInUser ? (
           <>
             <p>{`Bienvenido, ${loggedInUser.name}`}</p>
+            <Link to="/Welcome" style={{ textDecoration: 'none' }}>
+              <button style={{ backgroundColor: 'white', padding: '8px', borderRadius: '5px', border: 'none', color: '#8f1117', cursor: 'pointer', fontSize: '0.9rem' }}>Inicio</button>
+            </Link>
+            <Link to="/listaalumnos" style={{ textDecoration: 'none' }}>
+              <button style={{ backgroundColor: 'white', padding: '8px', borderRadius: '5px', border: 'none', color: '#8f1117', cursor: 'pointer', fontSize: '0.9rem' }}>Lista de Alumnos</button>
+            </Link>
             <button onClick={handleLogout} style={{ backgroundColor: 'white', padding: '8px', borderRadius: '5px', border: 'none', color: '#8f1117', cursor: 'pointer', fontSize: '0.9rem' }}>Cerrar Sesión</button>
           </>
         ) : (

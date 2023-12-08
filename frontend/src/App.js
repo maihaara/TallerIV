@@ -29,8 +29,8 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/Welcome" element={<Welcome />} />
-          <Route path="/listaalumnos" element={<Listaalumnos />} />
+          <Route path="/Welcome" element={<Welcome  loggedInUser={loggedInUser} />} />
+          <Route path="/listaalumnos" element={<Listaalumnos loggedInUser={loggedInUser} />} />
           <Route path="/cargar-alumno" element={<CargarAlumno />} />
         </Routes>
       </div>
