@@ -87,13 +87,45 @@ app.post('/logout', (req, res) => {
 });
 
 
-// Ruta para cargar un alumno
 app.get('/alumnos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM alumno');
     res.json(result.rows);
   } catch (error) {
     console.error('Error al obtener la lista de alumnos:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+app.get('/alumnos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM alumno WHERE alumno_id = $1', [id]);
+
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ success: false, message: 'Alumno no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener el alumno:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+app.post('/alumnos', async (req, res) => {
+  const { nombre, apellido, edad, generoId, cursoId, seccionId } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [nombre, apellido, edad, generoId, cursoId, seccionId]
+    );
+
+    res.json({ success: true, message: 'Alumno cargado exitosamente', alumno: result.rows[0] });
+  } catch (error) {
+    console.error('Error en la consulta SQL:', error);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
   }
 });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const ListaAlumnos = () => {
   const [alumnos, setAlumnos] = useState([]);
@@ -59,6 +60,11 @@ const ListaAlumnos = () => {
               <td>{alumno.curso}</td>
               <td>{alumno.genero}</td>
               <td>{alumno.seccion}</td>
+              <td>
+                <Link to={`/editar-alumno/${alumno.alumno_id}`}>
+                  <button>Editar</button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -7,6 +7,7 @@ import Login from './login';
 import Welcome from './Welcome';
 import Listaalumnos from './listaalumnos';
 import CargarAlumno from './CargarAlumno';
+import EditarAlumno from './EditarAlumno';
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/Welcome" element={<Welcome  loggedInUser={loggedInUser} />} />
           <Route path="/listaalumnos" element={<Listaalumnos loggedInUser={loggedInUser} />} />
           <Route path="/cargar-alumno" element={<CargarAlumno />} />
+          <Route path="/editar-alumno/:id" element={<EditarAlumno />} />
         </Routes>
       </div>
     </Router>
