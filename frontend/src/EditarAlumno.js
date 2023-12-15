@@ -5,23 +5,35 @@ import { useParams } from 'react-router-dom';
 
 const EditarAlumno = () => {
   const { id } = useParams();
-  useEffect(() => {
-  if (id) {
-	    fetchData();
-	  }
-	}, [id]);
   const [alumno, setAlumno] = useState({
     nombre: '',
     apellido: '',
     edad: 0,
-    cursoId: 0,
-    generoId: 0,
-    seccionId: 0,
+    cursoId: '', // Cambiado a cursoId en lugar de curso
+    generoId: '', // Cambiado a generoId en lugar de genero
+    seccionId: '', // Cambiado a seccionId en lugar de seccion
   });
-  
+  const [cursos, setCursos] = useState([]);
+  const [generos, setGeneros] = useState([]);
+  const [secciones, setSecciones] = useState([]);
+
   useEffect(() => {
     fetchData();
-  }, []);
+    // Obtener la lista de cursos al cargar el componente
+    axios.get('http://localhost:8081/cursos')
+      .then(response => setCursos(response.data))
+      .catch(error => console.error('Error al obtener la lista de cursos:', error));
+
+    // Obtener la lista de géneros al cargar el componente
+    axios.get('http://localhost:8081/generos')
+      .then(response => setGeneros(response.data))
+      .catch(error => console.error('Error al obtener la lista de géneros:', error));
+
+    // Obtener la lista de secciones al cargar el componente
+    axios.get('http://localhost:8081/secciones')
+      .then(response => setSecciones(response.data))
+      .catch(error => console.error('Error al obtener la lista de secciones:', error));
+  }, [id]);
 
   const fetchData = async () => {
     try {
@@ -47,33 +59,53 @@ const EditarAlumno = () => {
   };
 
   return (
-    <div style={{fontFamily: 'Georgia, serif' }}>
-    <h2>Editar Alumno</h2>
-   
-    <form style={{ backgroundColor: 'white', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , fontFamily: 'Georgia, serif', fontSize: '0.8rem', fontWeight: 'bold'}}>
-      
+    <div style={{ fontFamily: 'Georgia, serif' }}>
+      <h2>Editar Alumno</h2>
+
+      <form style={{ backgroundColor: 'white', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'Georgia, serif', fontSize: '0.8rem', fontWeight: 'bold' }}>
+
         {/* Campos de entrada para editar los datos del alumno */}
         <label>Nombre:</label>
         <input type="text" name="nombre" value={alumno.nombre} onChange={handleInputChange} />
 
         <label>Apellido:</label>
-        <input type="text" name="apellido" value={alumno.apellido} onChange={handleInputChange}  />
+        <input type="text" name="apellido" value={alumno.apellido} onChange={handleInputChange} />
 
         <label>Edad:</label>
         <input type="number" name="edad" value={alumno.edad} onChange={handleInputChange} />
 
         <label>Curso:</label>
-        <input type="number" name="cursoId" value={alumno.cursoId} onChange={handleInputChange} />
+        <select name="cursoId" value={alumno.cursoId} onChange={handleInputChange}>
+          <option value="">Selecciona un curso</option>
+          {cursos.map(curso => (
+            <option key={curso.curso_id} value={curso.curso_id}>
+              {curso.descripcion}
+            </option>
+          ))}
+        </select>
 
-        <label>Genero:</label>
-        <input type="number" name="generoId" value={alumno.generoId} onChange={handleInputChange} />
+        <label>Género:</label>
+        <select name="generoId" value={alumno.generoId} onChange={handleInputChange}>
+          <option value="">Selecciona un género</option>
+          {generos.map(genero => (
+            <option key={genero.id} value={genero.id}>
+              {genero.descripcion}
+            </option>
+          ))}
+        </select>
 
         <label>Sección:</label>
-        <input type="number" name="seccionId" value={alumno.seccionId} onChange={handleInputChange} />
-
+        <select name="seccionId" value={alumno.seccionId} onChange={handleInputChange}>
+          <option value="">Selecciona una sección</option>
+          {secciones.map(seccion => (
+            <option key={seccion.id} value={seccion.id}>
+              {seccion.descripcion}
+            </option>
+          ))}
+        </select>
 
       </form>
-      <button type="button" onClick={handleGuardar} style={{ backgroundColor: 'maroon', padding: '15px', borderRadius: '10px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto'  }}> Editar alumno</button>
+      <button type="button" onClick={handleGuardar} style={{ backgroundColor: 'maroon', padding: '15px', borderRadius: '10px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}> Editar alumno</button>
 
     </div>
   );
