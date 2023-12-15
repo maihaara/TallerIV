@@ -156,6 +156,27 @@ app.put('/alumnos/:id', async (req, res) => {
   }
 });
 
+app.delete('/alumnos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Imprimir mensaje de depuración
+    console.log(`Intentando eliminar alumno con ID: ${id}`);
+
+    // Realizar la lógica para eliminar el alumno con el ID proporcionado
+    const result = await pool.query('DELETE FROM alumno WHERE alumno_id = $1', [id]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ success: false, message: 'Alumno no encontrado' });
+    }
+
+    res.json({ success: true, message: 'Alumno eliminado exitosamente' });
+  } catch (error) {
+    console.error('Error al eliminar el alumno:', error);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
 app.get('/generos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM genero');

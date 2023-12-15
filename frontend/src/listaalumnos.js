@@ -35,9 +35,22 @@ const ListaAlumnos = () => {
     fetchData();
   }, []);
 
+  const handleEliminarAlumno = async (alumnoId) => {
+    try {
+      // Realizar la solicitud para eliminar el alumno
+      await axios.delete(`http://localhost:8081/alumnos/${alumnoId}`);
+
+      // Actualizar la lista de alumnos después de la eliminación
+      const nuevosAlumnos = alumnos.filter((alumno) => alumno.alumno_id !== alumnoId);
+      setAlumnos(nuevosAlumnos);
+    } catch (error) {
+      console.error('Error al eliminar el alumno:', error);
+    }
+  };
+
   return (
-<div style={{ backgroundColor: 'white', height: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'Georgia, serif' }}>
-  <h2 style={{ fontSize: '3em', margin: '0' }}>Lista de Alumnos</h2>
+    <div style={{ backgroundColor: 'white', height: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'Georgia, serif' }}>
+      <h2 style={{ fontSize: '3em', margin: '0' }}>Lista de Alumnos</h2>
       <table>
         <thead>
           <tr>
@@ -48,10 +61,11 @@ const ListaAlumnos = () => {
             <th>Curso</th>
             <th>Genero</th>
             <th>Seccion</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {alumnos.map(alumno => (
+          {alumnos.map((alumno) => (
             <tr key={alumno.alumno_id}>
               <td>{alumno.alumno_id}</td>
               <td>{alumno.nombre}</td>
@@ -62,8 +76,9 @@ const ListaAlumnos = () => {
               <td>{alumno.seccion}</td>
               <td>
                 <Link to={`/editar-alumno/${alumno.alumno_id}`}>
-                <button style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem' }}>Editar</button>
+                  <button style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem', marginRight: '5px' }}>Editar</button>
                 </Link>
+                <button onClick={() => handleEliminarAlumno(alumno.alumno_id)} style={{ backgroundColor: 'red', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem' }}>Eliminar</button>
               </td>
             </tr>
           ))}
