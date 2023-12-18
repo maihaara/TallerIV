@@ -133,8 +133,9 @@ app.get('/alumnos/:id', async (req, res) => {
 
 app.put('/alumnos/:id', async (req, res) => {
   const { id } = req.params;
-  const { nombre, apellido } = req.body;
-
+  const { nombre, apellido, edad, curso_id, genero_id, seccion_id } = req.body;
+   console.log('Consulta SQL:', 'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5 WHERE alumno_id = $6', [nombre, apellido, curso_id, genero_id, seccion_id, id]);
+  console.log('Datos recibidos del cliente:', req.body);
   // Validar que los campos requeridos no sean nulos
   if (!nombre || !apellido) {
     return res.status(400).json({ success: false, message: 'Los campos nombre y apellido son obligatorios' });
@@ -142,7 +143,10 @@ app.put('/alumnos/:id', async (req, res) => {
 
   try {
     // Realiza la actualización en la base de datos
-    const result = await pool.query('UPDATE alumno SET nombre = $1, apellido = $2 WHERE alumno_id = $3', [nombre, apellido, id]);
+    const result = await pool.query(
+      'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5, edad = $6 WHERE alumno_id = $7',
+      [nombre, apellido, curso_id, genero_id, seccion_id, edad, id]
+    );
 
     // Verifica que se haya actualizado un registro
     if (result.rowCount === 0) {

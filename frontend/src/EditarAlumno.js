@@ -46,10 +46,22 @@ const EditarAlumno = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAlumno((prevAlumno) => ({ ...prevAlumno, [name]: value }));
+    // Convierte los valores a enteros si son números
+    const numericValue = !isNaN(value) ? +value : value;
+    setAlumno((prevAlumno) => ({ ...prevAlumno, [name]: numericValue }));
   };
 
   const handleGuardar = async () => {
+    console.log('Datos a enviar al servidor:', alumno);
+    const datosAlumno = {
+    alumno_id: alumno.alumno_id,
+    nombre: alumno.nombre,
+    edad: alumno.edad,
+    curso_id: alumno.cursoId, // ajusta el nombre del campo
+    genero_id: alumno.generoId, // ajusta el nombre del campo
+    seccion_id: alumno.seccionId, // ajusta el nombre del campo
+    apellido: alumno.apellido,
+    };
     try {
       await axios.put(`http://localhost:8081/alumnos/${id}`, alumno);
       // Puedes redirigir al usuario a la lista de alumnos u otra página después de editar
@@ -75,7 +87,7 @@ const EditarAlumno = () => {
         <input type="number" name="edad" value={alumno.edad} onChange={handleInputChange} />
 
         <label>Curso:</label>
-        <select name="cursoId" value={alumno.cursoId} onChange={handleInputChange}>
+        <select name="curso_id" value={alumno.curso_id} onChange={handleInputChange}>
           <option value="">Selecciona un curso</option>
           {cursos.map(curso => (
             <option key={curso.curso_id} value={curso.curso_id}>
@@ -85,7 +97,7 @@ const EditarAlumno = () => {
         </select>
 
         <label>Género:</label>
-        <select name="generoId" value={alumno.generoId} onChange={handleInputChange}>
+        <select name="genero_id" value={alumno.genero_id} onChange={handleInputChange}>
           <option value="">Selecciona un género</option>
           {generos.map(genero => (
             <option key={genero.id} value={genero.id}>
@@ -95,7 +107,7 @@ const EditarAlumno = () => {
         </select>
 
         <label>Sección:</label>
-        <select name="seccionId" value={alumno.seccionId} onChange={handleInputChange}>
+        <select name="seccion_id" value={alumno.seccion_id} onChange={handleInputChange}>
           <option value="">Selecciona una sección</option>
           {secciones.map(seccion => (
             <option key={seccion.id} value={seccion.id}>
