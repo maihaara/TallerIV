@@ -99,12 +99,12 @@ app.get('/alumnos', async (req, res) => {
 
 
 app.post('/alumnos', async (req, res) => {
-  const { nombre, apellido, edad, generoId, cursoId, seccionId } = req.body;
+  const { nombre, apellido, edad, generoId, cursoId, seccionId, notaFinal, comportamiento, asistencia } = req.body;
 
   try {
     const result = await pool.query(
-      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [nombre, apellido, edad, generoId, cursoId, seccionId]
+      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id, nota_final, comportamiento, asistencia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+      [nombre, apellido, edad, generoId, cursoId, seccionId, notaFinal, comportamiento, asistencia]
     );
 
     res.json({ success: true, message: 'Alumno cargado exitosamente', alumno: result.rows[0] });
@@ -133,22 +133,18 @@ app.get('/alumnos/:id', async (req, res) => {
 
 app.put('/alumnos/:id', async (req, res) => {
   const { id } = req.params;
-  const { nombre, apellido, edad, curso_id, genero_id, seccion_id } = req.body;
-   console.log('Consulta SQL:', 'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5 WHERE alumno_id = $6', [nombre, apellido, curso_id, genero_id, seccion_id, id]);
-  console.log('Datos recibidos del cliente:', req.body);
-  // Validar que los campos requeridos no sean nulos
+  const { nombre, apellido, edad, curso_id, genero_id, seccion_id, nota_final, comportamiento, asistencia} = req.body;
+
   if (!nombre || !apellido) {
     return res.status(400).json({ success: false, message: 'Los campos nombre y apellido son obligatorios' });
   }
 
   try {
-    // Realiza la actualización en la base de datos
     const result = await pool.query(
-      'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5, edad = $6 WHERE alumno_id = $7',
-      [nombre, apellido, curso_id, genero_id, seccion_id, edad, id]
+      'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5, edad = $6, nota_final = $7, comportamiento = $8, asistencia = $9, WHERE alumno_id = $10',
+      [nombre, apellido, curso_id, genero_id, seccion_id, edad, nota_final, comportamiento, asistencia, id]
     );
 
-    // Verifica que se haya actualizado un registro
     if (result.rowCount === 0) {
       return res.status(404).json({ success: false, message: 'Alumno no encontrado' });
     }

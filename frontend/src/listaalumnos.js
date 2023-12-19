@@ -61,6 +61,10 @@ const ListaAlumnos = () => {
             <th>Curso</th>
             <th>Genero</th>
             <th>Seccion</th>
+            <th>Nota Final</th>
+            <th>Comportamiento</th>
+            <th>Asistencia</th>
+            <th>Resultado</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -74,6 +78,10 @@ const ListaAlumnos = () => {
               <td>{alumno.curso}</td>
               <td>{alumno.genero}</td>
               <td>{alumno.seccion}</td>
+              <td>{alumno.nota_final}</td>
+              <td>{alumno.comportamiento}</td>
+              <td>{alumno.asistencia}</td>
+              <td>{alumno.resultado}</td>
               <td>
                 <Link to={`/editar-alumno/${alumno.alumno_id}`}>
                   <button style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem', marginRight: '5px' }}>Editar</button>

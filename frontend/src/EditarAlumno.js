@@ -115,6 +115,14 @@ const EditarAlumno = () => {
             </option>
           ))}
         </select>
+        <label>Nota Final:</label>
+        <input type="text" name="nota_final" value={alumno.nota_final} onChange={handleInputChange} />
+
+        <label>Comportamiento:</label>
+        <input type="text" name="comportamiento" value={alumno.comportamiento} onChange={handleInputChange} />
+
+        <label>Asistencia:</label>
+        <input type="text" name="asistencia" value={alumno.asistencia} onChange={handleInputChange} />
 
       </form>
       <button type="button" onClick={handleGuardar} style={{ backgroundColor: 'maroon', padding: '15px', borderRadius: '10px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}> Editar alumno</button>

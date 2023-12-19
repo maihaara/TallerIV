@@ -10,6 +10,10 @@ function CargarAlumno() {
   const [generoId, setGeneroId] = useState('');
   const [cursoId, setCursoId] = useState('');
   const [seccionId, setSeccionId] = useState('');
+  const [notaFinal, setNotaFinal] = useState(''); // Nueva
+  const [comportamiento, setComportamiento] = useState(''); // Nueva
+  const [asistencia, setAsistencia] = useState(''); // Nueva
+  const [resultado, setResultado] = useState(''); // Nueva
   const [mensaje, setMensaje] = useState('');
   const [generos, setGeneros] = useState([]);
   const [cursosData, setCursosData] = useState([]);
@@ -47,6 +51,10 @@ useEffect(() => {
         generoId,
         cursoId,
         seccionId,
+        notaFinal, // Nueva
+        comportamiento, // Nueva
+        asistencia, // Nueva
+        resultado, // Nueva
       });
 
       if (response.data.success) {
@@ -108,6 +116,18 @@ useEffect(() => {
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label htmlFor='notaFinal'>Nota Final:</label>
+          <input type='text' name='notaFinal' onChange={(e) => setNotaFinal(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor='comportamiento'>Comportamiento:</label>
+          <input type='text' name='comportamiento' onChange={(e) => setComportamiento(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor='asistencia'>Asistencia:</label>
+          <input type='text' name='asistencia' onChange={(e) => setAsistencia(e.target.value)} />
         </div>
        
       </form>
