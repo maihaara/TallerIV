@@ -13,7 +13,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'taller',
-  password: 'postgres',
+  password: '1107',
   port: 5432,
 });
 
@@ -80,8 +80,7 @@ app.post('/login', async (req, res) => {
 
 // Ruta para cerrar sesión
 app.post('/logout', (req, res) => {
-  // Puedes realizar cualquier acción adicional necesaria al cerrar sesión
-  // ...
+
 
   res.json({ success: true, message: 'Sesión cerrada exitosamente' });
 });
@@ -106,6 +105,7 @@ app.post('/alumnos', async (req, res) => {
     const promedio = (parseFloat(notaFinal) + parseFloat(comportamiento) + parseFloat(asistencia)) / 3;
     let resultado;
 
+    
     if (promedio < 50) {
       resultado = 'Esta en riesgo';
     } else if (promedio >= 50 && promedio < 80) {

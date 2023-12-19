@@ -49,50 +49,50 @@ const ListaAlumnos = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'white', height: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'Georgia, serif' }}>
-      <h2 style={{ fontSize: '3em', margin: '0' }}>Lista de Alumnos</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Edad</th>
-            <th>Curso</th>
-            <th>Genero</th>
-            <th>Seccion</th>
-            <th>Nota Final</th>
-            <th>Comportamiento</th>
-            <th>Asistencia</th>
-            <th>Resultado</th>
-            <th>Acciones</th>
+    <div style={{ backgroundColor: 'white', padding: '20px', fontFamily: 'Georgia, serif' }}>
+    <h2 style={{ fontSize: '3em', margin: '0' }}>Lista de Alumnos</h2>
+    <table style={{ width: '104%', margin: 'auto', borderCollapse: 'collapse', marginTop: '20px' }}>
+      <thead>
+        <tr style={{ backgroundColor: '#f2f2f2' }}>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Edad</th>
+          <th>Curso</th>
+          <th>Género</th>
+          <th>Sección</th>
+          <th>Nota Final</th>
+          <th>Comportamiento</th>
+          <th>Asistencia</th>
+          <th>Informe del Alumno</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {alumnos.map((alumno) => (
+          <tr key={alumno.alumno_id} style={{ borderBottom: '1px solid #ddd' }}>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.alumno_id}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.nombre}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.apellido}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.edad}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.curso}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.genero}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.seccion}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.nota_final}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.comportamiento}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.asistencia}</td>
+            <td style={{ borderRight: '1px solid #ddd' }}>{alumno.resultado}</td>
+            <td>
+              <Link to={`/editar-alumno/${alumno.alumno_id}`}>
+                <button style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem', marginRight: '5px' }}>Editar</button>
+              </Link>
+              <button onClick={() => handleEliminarAlumno(alumno.alumno_id)} style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem' }}>Eliminar</button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {alumnos.map((alumno) => (
-            <tr key={alumno.alumno_id}>
-              <td>{alumno.alumno_id}</td>
-              <td>{alumno.nombre}</td>
-              <td>{alumno.apellido}</td>
-              <td>{alumno.edad}</td>
-              <td>{alumno.curso}</td>
-              <td>{alumno.genero}</td>
-              <td>{alumno.seccion}</td>
-              <td>{alumno.nota_final}</td>
-              <td>{alumno.comportamiento}</td>
-              <td>{alumno.asistencia}</td>
-              <td>{alumno.resultado}</td>
-              <td>
-                <Link to={`/editar-alumno/${alumno.alumno_id}`}>
-                  <button style={{ backgroundColor: 'maroon', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem', marginRight: '5px' }}>Editar</button>
-                </Link>
-                <button onClick={() => handleEliminarAlumno(alumno.alumno_id)} style={{ backgroundColor: 'red', padding: '8px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.9rem' }}>Eliminar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
+  </div>
   );
 };
 

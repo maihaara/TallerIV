@@ -69,75 +69,76 @@ useEffect(() => {
   };
 
   return (
-    <div style={{fontFamily: 'Georgia, serif' }}>
-      <h2>Cargar Alumno</h2>
-      <form style={{ backgroundColor: 'white', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' , fontFamily: 'Georgia, serif', fontSize: '1.5rem', fontWeight: 'bold'}}>
-      <div>
-          <label htmlFor='nombre'>Nombre:</label>
-          <input type='text' name='nombre' onChange={(e) => setNombre(e.target.value)} />
+
+          <div style={{ fontFamily: 'Georgia, serif' }}>
+          <h2>Cargar Alumno</h2>
+          <form style={{ backgroundColor: 'white', height: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'Georgia, serif', fontSize: '1.5rem', fontWeight: 'bold', padding: '20px' }}>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='nombre'>Nombre:</label>
+              <input type='text' name='nombre' onChange={(e) => setNombre(e.target.value)} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='apellido'>Apellido:</label>
+              <input type='text' name='apellido' onChange={(e) => setApellido(e.target.value)} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='edad'>Edad:</label>
+              <input type='text' name='edad' onChange={(e) => setEdad(e.target.value)} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='generoId'>Género:</label>
+              <select name='generoId' value={generoId} onChange={(e) => setGeneroId(e.target.value)}>
+                <option value=''>Selecciona un género</option>
+                {generos.map(genero => (
+                  <option key={genero.id} value={genero.id}>
+                    {genero.descripcion}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='cursoId'>Curso:</label>
+              <select name='cursoId' value={cursoId} onChange={(e) => setCursoId(e.target.value)}>
+                <option value=''>Selecciona un curso</option>
+                {cursos.map(curso => (
+                  <option key={curso.curso_id} value={curso.curso_id}>
+                    {curso.descripcion}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='seccionId'>Sección:</label>
+              <select name='seccionId' value={seccionId} onChange={(e) => setSeccionId(e.target.value)}>
+                <option value=''>Selecciona una sección</option>
+                {secciones.map(seccion => (
+                  <option key={seccion.id} value={seccion.id}>
+                    {seccion.descripcion}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='notaFinal'>Nota Final:</label>
+              <input type='text' name='notaFinal' onChange={(e) => setNotaFinal(e.target.value)} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='comportamiento'>Comportamiento:</label>
+              <input type='text' name='comportamiento' onChange={(e) => setComportamiento(e.target.value)} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label htmlFor='asistencia'>Asistencia:</label>
+              <input type='text' name='asistencia' onChange={(e) => setAsistencia(e.target.value)} />
+            </div>
+          </form>
+          <button type='button' onClick={handleCargarAlumno} style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}>Agregar alumno</button>
+          <p>{mensaje} </p>
+          <Link to="/listaalumnos" style={{ textDecoration: 'none' }}>
+            <button type='button' style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}>Ver Lista de Alumnos</button>
+          </Link>
         </div>
-        <div>
-          <label htmlFor='apellido'>Apellido:</label>
-          <input type='text' name='apellido' onChange={(e) => setApellido(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor='edad'>Edad:</label>
-          <input type='text' name='edad' onChange={(e) => setEdad(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor='generoId'>Género:</label>
-          <select name='generoId' value={generoId} onChange={(e) => setGeneroId(e.target.value)}>
-            <option value=''>Selecciona un género</option>
-            {generos.map(genero => (
-              <option key={genero.id} value={genero.id}>
-                {genero.descripcion}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor='cursoId'>Curso:</label>
-          <select name='cursoId' value={cursoId} onChange={(e) => setCursoId(e.target.value)}>
-            <option value=''>Selecciona un curso</option>
-            {cursos.map(curso => (
-              <option key={curso.curso_id} value={curso.curso_id}>
-                {curso.descripcion}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor='seccionId'>Sección:</label>
-          <select name='seccionId' value={seccionId} onChange={(e) => setSeccionId(e.target.value)}>
-            <option value=''>Selecciona una sección</option>
-            {secciones.map(seccion => (
-              <option key={seccion.id} value={seccion.id}>
-                {seccion.descripcion}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor='notaFinal'>Nota Final:</label>
-          <input type='text' name='notaFinal' onChange={(e) => setNotaFinal(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor='comportamiento'>Comportamiento:</label>
-          <input type='text' name='comportamiento' onChange={(e) => setComportamiento(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor='asistencia'>Asistencia:</label>
-          <input type='text' name='asistencia' onChange={(e) => setAsistencia(e.target.value)} />
-        </div>
-       
-      </form>
-      <button type='button' onClick={handleCargarAlumno} style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto'  }}> Agregar alumno</button>
-      <p>{mensaje} </p>
-      <Link to="/listaalumnos" style={{ textDecoration: 'none' }}>
-        <button type='button' style={{ backgroundColor: 'maroon', padding: '10px', borderRadius: '5px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto'}}> Ver Lista de Alumnos</button>
-      </Link>
-    </div>
-  );
+    );
+    
 }
 
 export default CargarAlumno;

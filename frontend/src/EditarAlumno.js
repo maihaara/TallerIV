@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const EditarAlumno = () => {
   const { id } = useParams();
@@ -16,6 +17,8 @@ const EditarAlumno = () => {
   const [cursos, setCursos] = useState([]);
   const [generos, setGeneros] = useState([]);
   const [secciones, setSecciones] = useState([]);
+
+ 
 
   useEffect(() => {
     fetchData();
@@ -70,64 +73,94 @@ const EditarAlumno = () => {
     }
   };
 
+
   return (
     <div style={{ fontFamily: 'Georgia, serif' }}>
-      <h2>Editar Alumno</h2>
+        <h2>Editar Alumno</h2>
 
-      <form style={{ backgroundColor: 'white', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'Georgia, serif', fontSize: '0.8rem', fontWeight: 'bold' }}>
+      <form style={{ backgroundColor: 'white', padding: '20px', maxWidth: '400px', margin: '0 auto', fontFamily: 'Georgia, serif', fontSize: '0.8rem', fontWeight: 'bold' }}>
 
         {/* Campos de entrada para editar los datos del alumno */}
-        <label>Nombre:</label>
-        <input type="text" name="nombre" value={alumno.nombre} onChange={handleInputChange} />
+        <div style={{ marginBottom: '10px' }}>
+          <label>Nombre:</label>
+          <input type="text" name="nombre" value={alumno.nombre} onChange={handleInputChange} />
+        </div>
 
-        <label>Apellido:</label>
-        <input type="text" name="apellido" value={alumno.apellido} onChange={handleInputChange} />
+        <div style={{ marginBottom: '10px' }}>
+          <label>Apellido:</label>
+          <input type="text" name="apellido" value={alumno.apellido} onChange={handleInputChange} />
+        </div>
 
-        <label>Edad:</label>
-        <input type="number" name="edad" value={alumno.edad} onChange={handleInputChange} />
+        <div style={{ marginBottom: '10px' }}>
+          <label>Edad:</label>
+          <input type="number" name="edad" value={alumno.edad} onChange={handleInputChange} />
+        </div>
 
-        <label>Curso:</label>
-        <select name="curso_id" value={alumno.curso_id} onChange={handleInputChange}>
-          <option value="">Selecciona un curso</option>
-          {cursos.map(curso => (
-            <option key={curso.curso_id} value={curso.curso_id}>
-              {curso.descripcion}
-            </option>
-          ))}
-        </select>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Curso:</label>
+          <select name="curso_id" value={alumno.curso_id} onChange={handleInputChange}>
+            <option value="">Selecciona un curso</option>
+            {cursos.map(curso => (
+              <option key={curso.curso_id} value={curso.curso_id}>
+                {curso.descripcion}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <label>Género:</label>
-        <select name="genero_id" value={alumno.genero_id} onChange={handleInputChange}>
-          <option value="">Selecciona un género</option>
-          {generos.map(genero => (
-            <option key={genero.id} value={genero.id}>
-              {genero.descripcion}
-            </option>
-          ))}
-        </select>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Género:</label>
+          <select name="genero_id" value={alumno.genero_id} onChange={handleInputChange}>
+            <option value="">Selecciona un género</option>
+            {generos.map(genero => (
+              <option key={genero.id} value={genero.id}>
+                {genero.descripcion}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <label>Sección:</label>
-        <select name="seccion_id" value={alumno.seccion_id} onChange={handleInputChange}>
-          <option value="">Selecciona una sección</option>
-          {secciones.map(seccion => (
-            <option key={seccion.id} value={seccion.id}>
-              {seccion.descripcion}
-            </option>
-          ))}
-        </select>
-        <label>Nota Final:</label>
-        <input type="text" name="nota_final" value={alumno.nota_final} onChange={handleInputChange} />
+        <div style={{ marginBottom: '10px' }}>
+          <label>Sección:</label>
+          <select name="seccion_id" value={alumno.seccion_id} onChange={handleInputChange}>
+            <option value="">Selecciona una sección</option>
+            {secciones.map(seccion => (
+              <option key={seccion.id} value={seccion.id}>
+                {seccion.descripcion}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <label>Comportamiento:</label>
-        <input type="text" name="comportamiento" value={alumno.comportamiento} onChange={handleInputChange} />
+        <div style={{ marginBottom: '10px' }}>
+          <label>Nota Final:</label>
+          <input type="text" name="nota_final" value={alumno.nota_final} onChange={handleInputChange} />
+        </div>
 
-        <label>Asistencia:</label>
-        <input type="text" name="asistencia" value={alumno.asistencia} onChange={handleInputChange} />
+        <div style={{ marginBottom: '10px' }}>
+          <label>Comportamiento:</label>
+          <input type="text" name="comportamiento" value={alumno.comportamiento} onChange={handleInputChange} />
+        </div>
 
+        <div style={{ marginBottom: '10px' }}>
+          <label>Asistencia:</label>
+          <input type="text" name="asistencia" value={alumno.asistencia} onChange={handleInputChange} />
+        </div>
+
+        
+
+        
       </form>
+      <Link to="/listaalumnos" style={{ textDecoration: 'none' }}>
+            <button type='button' style={{  backgroundColor: 'maroon', padding: '15px', borderRadius: '10px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}>Ver Lista de Alumnos</button>
+          </Link>
+      
       <button type="button" onClick={handleGuardar} style={{ backgroundColor: 'maroon', padding: '15px', borderRadius: '10px', border: 'none', color: 'white', cursor: 'pointer', display: 'block', margin: '0 auto' }}> Editar alumno</button>
-
+      
     </div>
+    
+    
+
   );
 };
 
