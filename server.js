@@ -102,9 +102,20 @@ app.post('/alumnos', async (req, res) => {
   const { nombre, apellido, edad, generoId, cursoId, seccionId, notaFinal, comportamiento, asistencia } = req.body;
 
   try {
+    // Calculamos el resultado
+    const promedio = (parseFloat(notaFinal) + parseFloat(comportamiento) + parseFloat(asistencia)) / 3;
+    let resultado;
+
+    if (promedio < 50) {
+      resultado = 'Esta en riesgo';
+    } else if (promedio >= 50 && promedio < 80) {
+      resultado = 'Medio riesgo';
+    } else {
+      resultado = 'Esta bien';
+    }
     const result = await pool.query(
-      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id, nota_final, comportamiento, asistencia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
-      [nombre, apellido, edad, generoId, cursoId, seccionId, notaFinal, comportamiento, asistencia]
+      'INSERT INTO Alumno (nombre, apellido, edad, genero_id, curso_id, seccion_id, nota_final, comportamiento, asistencia, resultado) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+      [nombre, apellido, edad, generoId, cursoId, seccionId, notaFinal, comportamiento, asistencia, resultado]
     );
 
     res.json({ success: true, message: 'Alumno cargado exitosamente', alumno: result.rows[0] });
@@ -140,9 +151,21 @@ app.put('/alumnos/:id', async (req, res) => {
   }
 
   try {
+    // Calculamos el resultado
+    const promedio = (parseFloat(nota_final) + parseFloat(comportamiento) + parseFloat(asistencia)) / 3;
+    let resultado;
+
+    if (promedio < 50) {
+      resultado = 'Esta en riesgo';
+    } else if (promedio >= 50 && promedio < 80) {
+      resultado = 'Medio riesgo';
+    } else {
+      resultado = 'Esta bien';
+    }
+
     const result = await pool.query(
-      'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5, edad = $6, nota_final = $7, comportamiento = $8, asistencia = $9, WHERE alumno_id = $10',
-      [nombre, apellido, curso_id, genero_id, seccion_id, edad, nota_final, comportamiento, asistencia, id]
+      'UPDATE alumno SET nombre = $1, apellido = $2, curso_id = $3, genero_id = $4, seccion_id = $5, edad = $6, nota_final = $7, comportamiento = $8, asistencia = $9, resultado = $10 WHERE alumno_id = $11',
+      [nombre, apellido, curso_id, genero_id, seccion_id, edad, nota_final, comportamiento, asistencia, resultado, id]
     );
 
     if (result.rowCount === 0) {
